@@ -29,7 +29,7 @@ GROUP BY  A.custid
 
 -- 2 variant
 
-SELECT  O.custid custid , count( O.orderid) orderid , sum(OD.qty) qty
+SELECT  O.custid custid , count(distinct O.orderid) orderid , sum(OD.qty) qty
 FROM Sales.OrderDetails  as OD
 join Sales.Orders as O
 ON O.orderid = OD.orderid
@@ -61,8 +61,6 @@ ON C.custid = O.custid and O.orderdate ='20070212'
 
 
 GO -- 7
-
-SELECT  * FROM Sales.Customers
 
 SELECT C.Custid custid, C.companyname companyname , case when o.orderid IS NOT NULL  then 'Yes' else 'No' end as hasorderOn20070212
 FROM Sales.Customers as C
